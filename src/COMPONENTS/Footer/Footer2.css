@@ -13,6 +13,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 30px;
+    margin-right: 12px;
 }
 
 .footerin1 div{
@@ -72,17 +73,22 @@
     overflow: hidden;
     margin: 10px 0px;
     padding: 5px 5px;
+    border: 1px solid var(--col2);
 }
 
 .footerin1 .f2 .inputcontainer input{
     width: 80%;
     height: 30px;
+    /* outline: none; */
+    border: none;
+
 }
 
 .footerin1 .icon1 svg{
     width: 20px;
     height: 20px;
     color: var(--col1);
+    margin-right: 10px;
 }
 
 .footerin1 .icon2 svg{
