@@ -72,6 +72,7 @@
     justify-content: center;
     overflow: hidden;
     margin: 10px 0px;
+    margin-right: 5px;
     padding: 5px 5px;
     border: 1px solid var(--col2);
 }
@@ -81,14 +82,13 @@
     height: 30px;
     /* outline: none; */
     border: none;
-
 }
 
 .footerin1 .icon1 svg{
     width: 20px;
     height: 20px;
     color: var(--col1);
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 .footerin1 .icon2 svg{
