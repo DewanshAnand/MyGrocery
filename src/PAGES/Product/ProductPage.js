@@ -5,6 +5,8 @@ import img2 from '../../ASSETS/Images/2.png'
 import img3 from '../../ASSETS/Images/3.png'
 import img4 from '../../ASSETS/Images/4.png'
 import Navbar from '../../COMPONENTS/Navbar/Navbar'
+import Footer1 from '../../COMPONENTS/Footer/Footer1'
+import Footer2 from '../../COMPONENTS/Footer/Footer2'
 import './ProductPage.css'
 
 const ProductPage = () => {
@@ -13,6 +15,7 @@ const ProductPage = () => {
     const [productdata, setproductdata] = React.useState([])
     const [activeimg, setactiveimg] = React.useState({})
     const [count, setcount] = React.useState(1)
+    const [showreview, setshowreview] = React.useState(false)
 
     const getproductdatabyid = async () => {
         let temp = {
@@ -194,6 +197,77 @@ const ProductPage = () => {
                 </div>
                 
             </div>
+
+            <div className='pc2'>
+                {
+                    showreview ?
+                    <div className='tabs'>
+                        <button className='inactive' onClick={() => {
+                            setshowreview(false)
+                        }}>Description</button>
+                        <button className='active' onClick={() => {
+                            setshowreview(true)
+                        }}>Review</button>
+                    </div>
+                    :
+                    <div className='tabs'>
+                        <button className='active' onClick={() => {
+                            setshowreview(false)
+                        }}>Description</button>
+                        <button className='inactive' onClick={() => {
+                            setshowreview(true)
+                        }}>Review</button>
+                    </div>
+                }
+                {
+                    showreview ?
+                        <div className='reviewcont'>
+                            <form>
+                                <div className='fromgroup'>
+                                    <label htmlFor="">Name</label>
+                                    <input type="text"></input>
+                                </div>
+
+                                <div className='fromgroup'>
+                                    <label htmlFor="">Email</label>
+                                    <input type="email"></input>
+                                </div>
+
+                                <div className='fromgroup'>
+                                    <label htmlFor=''>Review</label>
+                                    <textarea name='' id='' cols='30' rows='10'></textarea>
+
+                                </div>
+
+                                <button>Submit</button>
+                            </form>
+
+                            <div className='allreview'>
+                                <h1 className='head1'>Product Reviews</h1>
+                                {productdata.ProductReviews && productdata.ProductReviews.map((item,index) => {
+                                    return(
+                                        <div className='review'>
+                                            <div className='reviewhead'>
+                                                <p className='name'>{item.Name}</p>
+                                                <span className='data'>{item.Date}</span>
+                                            </div>
+
+                                            <div className='reviewbody'>
+                                                {item.Review}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+
+                            </div>
+                        </div>
+                        :
+                        <p className='desc'>{productdata.ProductDescription}</p>
+                }
+            </div>
+
+            <Footer1/>
+            <Footer2/>
         </div>
     )
 }
