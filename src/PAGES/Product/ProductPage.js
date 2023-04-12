@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import img1 from '../../ASSETS/Images/1.png'
 import img2 from '../../ASSETS/Images/2.png'
@@ -7,6 +7,7 @@ import img4 from '../../ASSETS/Images/4.png'
 import Navbar from '../../COMPONENTS/Navbar/Navbar'
 import Footer1 from '../../COMPONENTS/Footer/Footer1'
 import Footer2 from '../../COMPONENTS/Footer/Footer2'
+import ProductsSlider from '../../COMPONENTS/Product/ProductsSlider'
 import './ProductPage.css'
 
 const ProductPage = () => {
@@ -107,6 +108,437 @@ const ProductPage = () => {
         window.scroll(0, 0)
     }, [])
 
+    const [rating, setrating] = useState(0);
+
+    const products = [
+        {
+            "ProductId": 1,
+            "ProductName": "Product 1",
+            "ProductDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "ProductImage": [
+                {
+                    id: 1,
+                    image: img1
+                },
+                {
+                    id: 2,
+                    image: img2
+                },
+                {
+                    id: 3,
+                    image: img3
+                }
+            ],
+            "ProductCode": "P1",
+            "ProductCategory": "Category 1",
+            "ProductSubCategory": "Sub Category 1",
+            "ProductBrand": "Brand 1",
+            "ProductColor": "Color 1",
+            "ProductSize": "Size 1",
+            "ProductWeight": "Weight 1",
+            "ProductMaterial": "Material 1",
+            "ProductQuantity": 10,
+            "ProductUnit": "Unit 1",
+            "ProductPrice": 100,
+            "SalesPrice": 80,
+            "ProductDiscount": 20,
+            "ProductDiscountType": "Percentage",
+            "ProductTax": 20,
+            "ProductTaxType": "Percentage",
+            "ProductShippingCharge": 20,
+            "ProductShippingChargeType": "Percentage",
+            "ProductShippingTime": "1-2 days",
+            "ProductShippingTimeType": "Days",
+            "ProductShippingLocation": "Location 1",
+            "ProductShippingLocationType": "Country",
+            "ProductShippingReturnPolicy": "Return Policy 1",
+            "ProductShippingReturnPolicyType": "Days",
+            "ProductShippingReturnPolicyDescription": "Return Policy Description 1",
+            "ProductShippingReturnPolicyDescriptionType": "Days",
+            "ProductReviews": [
+                {
+                    "ReviewId": 1,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 5,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                },
+                {
+                    "ReviewId": 2,
+                    "Name": "Viraj",
+                    "Email": "",
+                    "Rating": 1,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                },
+                {
+                    "ReviewId": 3,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 4,
+                    "Date": "2021-08-01",
+                    "Review": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                }
+            ]
+        },
+        {
+            "ProductId": 2,
+            "ProductName": "Product 2",
+            "ProductDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "ProductImage": [
+                {
+                    id: 1,
+                    image: img2
+                },
+                {
+                    id: 2,
+                    image: img1
+                },
+                {
+                    id: 3,
+                    image: img3
+                }
+            ],
+            "ProductCode": "P1",
+            "ProductCategory": "Category 1",
+            "ProductSubCategory": "Sub Category 1",
+            "ProductBrand": "Brand 1",
+            "ProductColor": "Color 1",
+            "ProductSize": "Size 1",
+            "ProductWeight": "Weight 1",
+            "ProductMaterial": "Material 1",
+            "ProductQuantity": 10,
+            "ProductUnit": "Unit 1",
+            "ProductPrice": 100,
+            "SalesPrice": 90,
+            "ProductDiscount": 10,
+            "ProductDiscountType": "Percentage",
+            "ProductTax": 20,
+            "ProductTaxType": "Percentage",
+            "ProductShippingCharge": 20,
+            "ProductShippingChargeType": "Percentage",
+            "ProductShippingTime": "1-2 days",
+            "ProductShippingTimeType": "Days",
+            "ProductShippingLocation": "Location 1",
+            "ProductShippingLocationType": "Country",
+            "ProductShippingReturnPolicy": "Return Policy 1",
+            "ProductShippingReturnPolicyType": "Days",
+            "ProductShippingReturnPolicyDescription": "Return Policy Description 1",
+            "ProductShippingReturnPolicyDescriptionType": "Days",
+            "ProductReviews": [
+                {
+                    "ReviewId": 1,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 5,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                },
+                {
+                    "ReviewId": 2,
+                    "Name": "Viraj",
+                    "Email": "",
+                    "Rating": 1,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                },
+                {
+                    "ReviewId": 3,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 4,
+                    "Date": "2021-08-01",
+                    "Review": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                }
+            ]
+        },
+        {
+            "ProductId": 3,
+            "ProductName": "Product 3",
+            "ProductDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "ProductImage": [
+                {
+                    id: 1,
+                    image: img3
+                },
+                {
+                    id: 2,
+                    image: img2
+                },
+                {
+                    id: 3,
+                    image: img3
+                }
+            ],
+            "ProductCode": "P1",
+            "ProductCategory": "Category 1",
+            "ProductSubCategory": "Sub Category 1",
+            "ProductBrand": "Brand 1",
+            "ProductColor": "Color 1",
+            "ProductSize": "Size 1",
+            "ProductWeight": "Weight 1",
+            "ProductMaterial": "Material 1",
+            "ProductQuantity": 10,
+            "ProductUnit": "Unit 1",
+            "ProductPrice": 100,
+            "SalesPrice": 70,
+            "ProductDiscount": 30,
+            "ProductDiscountType": "Percentage",
+            "ProductTax": 20,
+            "ProductTaxType": "Percentage",
+            "ProductShippingCharge": 20,
+            "ProductShippingChargeType": "Percentage",
+            "ProductShippingTime": "1-2 days",
+            "ProductShippingTimeType": "Days",
+            "ProductShippingLocation": "Location 1",
+            "ProductShippingLocationType": "Country",
+            "ProductShippingReturnPolicy": "Return Policy 1",
+            "ProductShippingReturnPolicyType": "Days",
+            "ProductShippingReturnPolicyDescription": "Return Policy Description 1",
+            "ProductShippingReturnPolicyDescriptionType": "Days",
+            "ProductReviews": [
+                {
+                    "ReviewId": 1,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 5,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                },
+                {
+                    "ReviewId": 2,
+                    "Name": "Viraj",
+                    "Email": "",
+                    "Rating": 1,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                },
+                {
+                    "ReviewId": 3,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 4,
+                    "Date": "2021-08-01",
+                    "Review": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                }
+            ]
+        },
+        {
+            "ProductId": 1,
+            "ProductName": "Product 1",
+            "ProductDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "ProductImage": [
+                {
+                    id: 1,
+                    image: img1
+                },
+                {
+                    id: 2,
+                    image: img2
+                },
+                {
+                    id: 3,
+                    image: img3
+                }
+            ],
+            "ProductCode": "P1",
+            "ProductCategory": "Category 1",
+            "ProductSubCategory": "Sub Category 1",
+            "ProductBrand": "Brand 1",
+            "ProductColor": "Color 1",
+            "ProductSize": "Size 1",
+            "ProductWeight": "Weight 1",
+            "ProductMaterial": "Material 1",
+            "ProductQuantity": 10,
+            "ProductUnit": "Unit 1",
+            "ProductPrice": 100,
+            "SalesPrice": 80,
+            "ProductDiscount": 20,
+            "ProductDiscountType": "Percentage",
+            "ProductTax": 20,
+            "ProductTaxType": "Percentage",
+            "ProductShippingCharge": 20,
+            "ProductShippingChargeType": "Percentage",
+            "ProductShippingTime": "1-2 days",
+            "ProductShippingTimeType": "Days",
+            "ProductShippingLocation": "Location 1",
+            "ProductShippingLocationType": "Country",
+            "ProductShippingReturnPolicy": "Return Policy 1",
+            "ProductShippingReturnPolicyType": "Days",
+            "ProductShippingReturnPolicyDescription": "Return Policy Description 1",
+            "ProductShippingReturnPolicyDescriptionType": "Days",
+            "ProductReviews": [
+                {
+                    "ReviewId": 1,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 5,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                },
+                {
+                    "ReviewId": 2,
+                    "Name": "Viraj",
+                    "Email": "",
+                    "Rating": 1,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                },
+                {
+                    "ReviewId": 3,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 4,
+                    "Date": "2021-08-01",
+                    "Review": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                }
+            ]
+        },
+        {
+            "ProductId": 2,
+            "ProductName": "Product 2",
+            "ProductDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "ProductImage": [
+                {
+                    id: 1,
+                    image: img2
+                },
+                {
+                    id: 2,
+                    image: img1
+                },
+                {
+                    id: 3,
+                    image: img3
+                }
+            ],
+            "ProductCode": "P1",
+            "ProductCategory": "Category 1",
+            "ProductSubCategory": "Sub Category 1",
+            "ProductBrand": "Brand 1",
+            "ProductColor": "Color 1",
+            "ProductSize": "Size 1",
+            "ProductWeight": "Weight 1",
+            "ProductMaterial": "Material 1",
+            "ProductQuantity": 10,
+            "ProductUnit": "Unit 1",
+            "ProductPrice": 100,
+            "SalesPrice": 90,
+            "ProductDiscount": 10,
+            "ProductDiscountType": "Percentage",
+            "ProductTax": 20,
+            "ProductTaxType": "Percentage",
+            "ProductShippingCharge": 20,
+            "ProductShippingChargeType": "Percentage",
+            "ProductShippingTime": "1-2 days",
+            "ProductShippingTimeType": "Days",
+            "ProductShippingLocation": "Location 1",
+            "ProductShippingLocationType": "Country",
+            "ProductShippingReturnPolicy": "Return Policy 1",
+            "ProductShippingReturnPolicyType": "Days",
+            "ProductShippingReturnPolicyDescription": "Return Policy Description 1",
+            "ProductShippingReturnPolicyDescriptionType": "Days",
+            "ProductReviews": [
+                {
+                    "ReviewId": 1,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 5,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                },
+                {
+                    "ReviewId": 2,
+                    "Name": "Viraj",
+                    "Email": "",
+                    "Rating": 1,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                },
+                {
+                    "ReviewId": 3,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 4,
+                    "Date": "2021-08-01",
+                    "Review": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                }
+            ]
+        },
+        {
+            "ProductId": 3,
+            "ProductName": "Product 3",
+            "ProductDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "ProductImage": [
+                {
+                    id: 1,
+                    image: img3
+                },
+                {
+                    id: 2,
+                    image: img2
+                },
+                {
+                    id: 3,
+                    image: img3
+                }
+            ],
+            "ProductCode": "P1",
+            "ProductCategory": "Category 1",
+            "ProductSubCategory": "Sub Category 1",
+            "ProductBrand": "Brand 1",
+            "ProductColor": "Color 1",
+            "ProductSize": "Size 1",
+            "ProductWeight": "Weight 1",
+            "ProductMaterial": "Material 1",
+            "ProductQuantity": 10,
+            "ProductUnit": "Unit 1",
+            "ProductPrice": 100,
+            "SalesPrice": 70,
+            "ProductDiscount": 30,
+            "ProductDiscountType": "Percentage",
+            "ProductTax": 20,
+            "ProductTaxType": "Percentage",
+            "ProductShippingCharge": 20,
+            "ProductShippingChargeType": "Percentage",
+            "ProductShippingTime": "1-2 days",
+            "ProductShippingTimeType": "Days",
+            "ProductShippingLocation": "Location 1",
+            "ProductShippingLocationType": "Country",
+            "ProductShippingReturnPolicy": "Return Policy 1",
+            "ProductShippingReturnPolicyType": "Days",
+            "ProductShippingReturnPolicyDescription": "Return Policy Description 1",
+            "ProductShippingReturnPolicyDescriptionType": "Days",
+            "ProductReviews": [
+                {
+                    "ReviewId": 1,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 5,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                },
+                {
+                    "ReviewId": 2,
+                    "Name": "Viraj",
+                    "Email": "",
+                    "Rating": 1,
+                    "Date": "2021-08-01",
+                    "Review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                },
+                {
+                    "ReviewId": 3,
+                    "Name": "Harshal Jain",
+                    "Email": "",
+                    "Rating": 4,
+                    "Date": "2021-08-01",
+                    "Review": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                }
+            ]
+        }
+    ]
+
     return (
         <div className='productpage'>
             {/* {<h1>Product id is - {prodid}</h1>
@@ -178,46 +610,46 @@ const ProductPage = () => {
                         </div>
 
                         <div className='btncont'>
-                        <button
-                            onClick={() => {
-                                alert('Added to Cart')
-                            }}
-                        >
-                            Add to Cart
-                        </button>
-                        <button
-                            onClick={() => {
-                                alert('Buy Now')
-                            }}
-                        >
-                            Buy Now
-                        </button>
-                    </div>
+                            <button
+                                onClick={() => {
+                                    alert('Added to Cart')
+                                }}
+                            >
+                                Add to Cart
+                            </button>
+                            <button
+                                onClick={() => {
+                                    alert('Buy Now')
+                                }}
+                            >
+                                Buy Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-                
+
             </div>
 
             <div className='pc2'>
                 {
                     showreview ?
-                    <div className='tabs'>
-                        <button className='inactive' onClick={() => {
-                            setshowreview(false)
-                        }}>Description</button>
-                        <button className='active' onClick={() => {
-                            setshowreview(true)
-                        }}>Review</button>
-                    </div>
-                    :
-                    <div className='tabs'>
-                        <button className='active' onClick={() => {
-                            setshowreview(false)
-                        }}>Description</button>
-                        <button className='inactive' onClick={() => {
-                            setshowreview(true)
-                        }}>Review</button>
-                    </div>
+                        <div className='tabs'>
+                            <button className='inactive' onClick={() => {
+                                setshowreview(false)
+                            }}>Description</button>
+                            <button className='active' onClick={() => {
+                                setshowreview(true)
+                            }}>Review</button>
+                        </div>
+                        :
+                        <div className='tabs'>
+                            <button className='active' onClick={() => {
+                                setshowreview(false)
+                            }}>Description</button>
+                            <button className='inactive' onClick={() => {
+                                setshowreview(true)
+                            }}>Review</button>
+                        </div>
                 }
                 {
                     showreview ?
@@ -239,16 +671,145 @@ const ProductPage = () => {
 
                                 </div>
 
+                                <div className='fromgroup'>
+                                    <label htmlFor=''>Rating</label>
+                                    <div className='rating'>
+                                        <div className='stars' onClick={() => { setrating(1) }}>
+                                            {
+                                                rating >= 1 ?
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                                    :
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                            }
+                                        </div>
+                                        <div className='stars' onClick={() => { setrating(2) }}>
+                                            {
+                                                rating >= 2 ?
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                                    :
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                            }
+                                        </div>
+                                        <div className='stars' onClick={() => { setrating(3) }}>
+                                            {
+                                                rating >= 3 ?
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                                    :
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                            }
+                                        </div>
+                                        <div className='stars' onClick={() => { setrating(4) }}>
+                                            {
+                                                rating >= 4 ?
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                                    :
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                            }
+                                        </div>
+                                        <div className='stars' onClick={() => { setrating(5) }}>
+                                            {
+                                                rating >= 5 ?
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                                    :
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <button>Submit</button>
                             </form>
 
                             <div className='allreview'>
                                 <h1 className='head1'>Product Reviews</h1>
-                                {productdata.ProductReviews && productdata.ProductReviews.map((item,index) => {
-                                    return(
+                                {productdata.ProductReviews && productdata.ProductReviews.map((item, index) => {
+                                    return (
                                         <div className='review'>
                                             <div className='reviewhead'>
                                                 <p className='name'>{item.Name}</p>
+                                                <div className='rating1'>
+                                                    <div className='stars' onClick={() => { setrating(1) }}>
+                                                        {
+                                                            item.Rating >= 1 ?
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                                :
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                        }
+                                                    </div>
+                                                    <div className='stars' onClick={() => { setrating(2) }}>
+                                                        {
+                                                            item.Rating >= 2 ?
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                                :
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                        }
+                                                    </div>
+                                                    <div className='stars' onClick={() => { setrating(3) }}>
+                                                        {
+                                                            item.Rating >= 3 ?
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                                :
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                        }
+                                                    </div>
+                                                    <div className='stars' onClick={() => { setrating(4) }}>
+                                                        {
+                                                            item.Rating >= 4 ?
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                                :
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                        }
+                                                    </div>
+                                                    <div className='stars' onClick={() => { setrating(5) }}>
+                                                        {
+                                                            item.Rating >= 5 ?
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 staractive" >
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                                :
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 starinactive">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                                </svg>
+                                                        }
+                                                    </div>
+                                                </div>
                                                 <span className='data'>{item.Date}</span>
                                             </div>
 
@@ -266,8 +827,16 @@ const ProductPage = () => {
                 }
             </div>
 
-            <Footer1/>
-            <Footer2/>
+            <div className='slidercont'>
+                <ProductsSlider products = {products} categoryname='Related Products'/>
+            </div>
+
+            <div className='slidercont'>
+                <ProductsSlider products = {products} categoryname='Explore More'/>
+            </div>
+
+            <Footer1 />
+            <Footer2 />
         </div>
     )
 }
