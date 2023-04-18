@@ -6,7 +6,7 @@ import './AuthPage.css'
 const Signup = () => {
     return (
         <div className='authpage'>
-            <Navbar />
+            <Navbar reloadnavbar={false}/>
 
             <div className='authcont'>
                 <img src='https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=600' alt='login' />

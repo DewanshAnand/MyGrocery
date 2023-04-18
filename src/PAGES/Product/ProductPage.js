@@ -9,6 +9,8 @@ import Footer1 from '../../COMPONENTS/Footer/Footer1'
 import Footer2 from '../../COMPONENTS/Footer/Footer2'
 import ProductsSlider from '../../COMPONENTS/Product/ProductsSlider'
 import './ProductPage.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductPage = () => {
     const { prodid } = useParams()
@@ -209,6 +211,51 @@ const ProductPage = () => {
         }
     ]
 
+    const [reloadnavbar, setreloadnavbar] = React.useState(false)
+
+    const addtocart = () => {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        if (cart) {
+            let itemincart = cart.find(item => item.productdata.id === productdata.ProductId)
+            if (itemincart) {
+                cart = cart.map(item => {
+                    if (item.productdata.ProductId === productdata.ProductId) {
+                        return {
+                            ...item,
+                            quantity: item.quantity + count
+                        }
+                    }
+                    else {
+                        return item
+                    }
+                })
+                localStorage.setItem('cart', JSON.stringify(cart))
+            } else {
+                cart = [
+                    ...cart,
+                    {
+                        productdata,
+                        quantity: count
+                    }
+                ]
+                localStorage.setItem('cart', JSON.stringify(cart))
+            }
+        }
+        else {
+            cart = [{
+                productdata,
+                quantity: count
+            }]
+
+            // console.log(cart);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        setreloadnavbar(!reloadnavbar)
+        toast.success('Item added to cart')
+        
+    }
+
     return (
         <div className='productpage'>
             {/* {<h1>Product id is - {prodid}</h1>
@@ -216,7 +263,7 @@ const ProductPage = () => {
                 {JSON.stringify(productdata)}
             </p>} */}
 
-            <Navbar />
+            <Navbar reloadnavbar = {reloadnavbar} />
 
             <div className='pc1'>
                 <Link to='/'>
@@ -282,7 +329,7 @@ const ProductPage = () => {
                         <div className='btncont'>
                             <button
                                 onClick={() => {
-                                    alert('Added to Cart')
+                                    addtocart();
                                 }}
                             >
                                 Add to Cart
