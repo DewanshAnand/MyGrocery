@@ -8,6 +8,8 @@ import UserSidebar from '../../COMPONENTS/UserProfile/UserSidebar';
 import AccountSettings from '../../COMPONENTS/UserProfile/AccountSettings';
 import './UserProfile.css'
 import ChangePassword from '../../COMPONENTS/UserProfile/ChangePassword';
+import YourOrders from '../../COMPONENTS/UserProfile/YourOrders';
+import UserAddress from '../../COMPONENTS/UserProfile/UserAddress';
 
 const UserProfile = () => {
 
@@ -23,6 +25,8 @@ const UserProfile = () => {
                 <div className='right'>
                     {activepage === 'accountsettings' && <AccountSettings />}
                     {activepage === 'changepassword' && <ChangePassword />}
+                    {activepage === 'yourorders' && <YourOrders />}
+                    {activepage === 'address' && <UserAddress />}
                 </div>
             </div>
             <Footer1 />
